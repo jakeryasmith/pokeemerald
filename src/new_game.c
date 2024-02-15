@@ -204,6 +204,7 @@ void NewGameInitData(void)
     WipeTrainerNameRecords();
     ResetTrainerHillResults();
     ResetContestLinkResults();
+    FlagSet(FLAG_UNUSED_0x020); //This is for the scripted loss. The odds this will be a bigger headache than it is a good plot point are pretty high.
 }
 
 static void ResetMiniGamesRecords(void)

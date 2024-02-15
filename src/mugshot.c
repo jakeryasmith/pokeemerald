@@ -24,11 +24,14 @@ void ClearMugshot(void);
 
 static const u32 sMugshotImg_May[] = INCBIN_U32("graphics/mugshots/may.4bpp.lz");
 static const u16 sMugshotPal_May[] = INCBIN_U16("graphics/mugshots/may.gbapal");
+static const u32 sMugshotImg_Brendan[] = INCBIN_U32("graphics/mugshots/brendan.4bpp.lz");
+static const u16 sMugshotPal_Brendan[] = INCBIN_U16("graphics/mugshots/brendan.gbapal");
 
 
 static const struct Mugshot sMugshots[] = {
     //ADD YOUR MUGSHOTS HERE
-    [MUGSHOT_MAY] = {.x = 4, .y = 6, .width = 64, .height = 64, .image = sMugshotImg_May, .palette = sMugshotPal_May}
+    [MUGSHOT_MAY] = {.x = 2, .y = 6, .width = 80, .height = 80, .image = sMugshotImg_May, .palette = sMugshotPal_May},
+    [MUGSHOT_BRENDAN] = {.x = 2, .y = 6, .width = 80, .height = 80, .image = sMugshotImg_Brendan, .palette = sMugshotPal_Brendan}
 };
 
 
