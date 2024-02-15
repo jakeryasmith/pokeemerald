@@ -280,9 +280,9 @@
 #define SPECIAL_VARS_START            0x8000
 // special vars
 // They are commonly used as parameters to commands, or return values from commands.
-#define VAR_0x8000                    0x8000
-#define VAR_0x8001                    0x8001
-#define VAR_0x8002                    0x8002
+#define VAR_0x8000                    0x8000 //MUGSHOTS
+#define VAR_0x8001                    0x8001 //MUGSHOT X
+#define VAR_0x8002                    0x8002 //MUGSHOT Y
 #define VAR_0x8003                    0x8003
 #define VAR_0x8004                    0x8004
 #define VAR_0x8005                    0x8005

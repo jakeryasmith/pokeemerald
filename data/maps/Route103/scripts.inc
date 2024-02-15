@@ -28,7 +28,10 @@ Route103_EventScript_Rival::
 	end
 
 Route103_EventScript_RivalMay::
+	setvar VAR_0x8000, MUGSHOT_MAY
+	callnative DrawMugshot
 	msgbox Route103_Text_MayRoute103Pokemon, MSGBOX_DEFAULT
+	callnative ClearMugshot
 	closemessage
 	playbgm MUS_ENCOUNTER_MAY, TRUE
 	applymovement LOCALID_RIVAL, Common_Movement_FacePlayer
@@ -37,7 +40,10 @@ Route103_EventScript_RivalMay::
 	waitmovement 0
 	applymovement LOCALID_RIVAL, Common_Movement_Delay48
 	waitmovement 0
+	callnative DrawMugshot
 	msgbox Route103_Text_MayLetsBattle, MSGBOX_DEFAULT
+	closemessage
+	callnative ClearMugshot
 	switch VAR_STARTER_MON
 	case 0, Route103_EventScript_StartMayBattleTreecko
 	case 1, Route103_EventScript_StartMayBattleTorchic
