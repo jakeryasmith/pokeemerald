@@ -1333,11 +1333,17 @@ static void CB2_EndTrainerBattle(void)
     {
         if (InBattlePyramid() || InTrainerHillChallenge())
             SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+        else if (!FlagGet(FLAG_UNUSED_0x020)){
+            SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+        }
         else
             SetMainCallback2(CB2_WhiteOut);
     }
     else
     {
+        if(!FlagGet(FLAG_UNUSED_0x020)){
+            FlagSet(FLAG_UNUSED_0x020);
+        }
         SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
         if (!InBattlePyramid() && !InTrainerHillChallenge())
         {

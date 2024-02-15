@@ -22,6 +22,7 @@ Route103_EventScript_OpenAlteringCave::
 Route103_EventScript_Rival::
 	lockall
 	checkplayergender
+	clearflag FLAG_UNUSED_0x020
 	goto_if_eq VAR_RESULT, MALE, Route103_EventScript_RivalMay
 	goto_if_eq VAR_RESULT, FEMALE, Route103_EventScript_RivalBrendan
 	end
@@ -62,41 +63,64 @@ Route103_EventScript_RivalBrendan::
 
 Route103_EventScript_StartMayBattleTreecko::
 	trainerbattle_no_intro TRAINER_MAY_ROUTE_103_TREECKO, Route103_Text_MayDefeated
-	goto Route103_EventScript_AfterMayBattle
+	call_if_set FLAG_UNUSED_0x020 Route103_EventScript_AfterMayBattleWon
+	call_if_unset FLAG_UNUSED_0x020 Route103_EventScript_AfterMayBattle
+	setflag FLAG_UNUSED_0x020
 	end
 
 Route103_EventScript_StartMayBattleTorchic::
 	trainerbattle_no_intro TRAINER_MAY_ROUTE_103_TORCHIC, Route103_Text_MayDefeated
-	goto Route103_EventScript_AfterMayBattle
+	call_if_set FLAG_UNUSED_0x020 Route103_EventScript_AfterMayBattleWon
+	call_if_unset FLAG_UNUSED_0x020 Route103_EventScript_AfterMayBattle
+	setflag FLAG_UNUSED_0x020
 	end
 
 Route103_EventScript_StartMayBattleMudkip::
 	trainerbattle_no_intro TRAINER_MAY_ROUTE_103_MUDKIP, Route103_Text_MayDefeated
-	goto Route103_EventScript_AfterMayBattle
+	call_if_set FLAG_UNUSED_0x020 Route103_EventScript_AfterMayBattleWon
+	call_if_unset FLAG_UNUSED_0x020 Route103_EventScript_AfterMayBattle
+	setflag FLAG_UNUSED_0x020
 	end
 
 Route103_EventScript_StartBrendanBattleTreecko::
 	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_103_TREECKO, Route103_Text_BrendanDefeated
-	goto Route103_EventScript_AfterBrendanBattle
+	call_if_set FLAG_UNUSED_0x020 Route103_EventScript_AfterBrendanBattleWon
+	call_if_unset FLAG_UNUSED_0x020 Route103_EventScript_AfterBrendanBattle
+	setflag FLAG_UNUSED_0x020
 	end
 
 Route103_EventScript_StartBrendanBattleTorchic::
 	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_103_TORCHIC, Route103_Text_BrendanDefeated
-	goto Route103_EventScript_AfterBrendanBattle
+	call_if_set FLAG_UNUSED_0x020 Route103_EventScript_AfterBrendanBattleWon
+	call_if_unset FLAG_UNUSED_0x020 Route103_EventScript_AfterBrendanBattle
+	setflag FLAG_UNUSED_0x020
 	end
 
 Route103_EventScript_StartBrendanBattleMudkip::
 	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_103_MUDKIP, Route103_Text_BrendanDefeated
-	goto Route103_EventScript_AfterBrendanBattle
+	call_if_set FLAG_UNUSED_0x020 Route103_EventScript_AfterBrendanBattleWon
+	call_if_unset FLAG_UNUSED_0x020 Route103_EventScript_AfterBrendanBattle
+	setflag FLAG_UNUSED_0x020
 	end
 
 Route103_EventScript_AfterMayBattle::
+	special HealPlayerParty
 	msgbox Route103_Text_MayTimeToHeadBack, MSGBOX_DEFAULT
+	goto Route103_EventScript_RivalExit
+	end
+
+Route103_EventScript_AfterMayBattleWon::
+	msgbox Route103_Text_MayNoWay, MSGBOX_DEFAULT
 	goto Route103_EventScript_RivalExit
 	end
 
 Route103_EventScript_AfterBrendanBattle::
 	msgbox Route103_Text_BrendanTimeToHeadBack, MSGBOX_DEFAULT
+	goto Route103_EventScript_RivalExit
+	end
+
+Route103_EventScript_AfterBrendanBattleWon::
+	msgbox Route103_Text_MayNoWay, MSGBOX_DEFAULT
 	goto Route103_EventScript_RivalExit
 	end
 
@@ -302,16 +326,14 @@ Route103_Text_MayLetsBattle:
 	.string "a TRAINER is like.$"
 
 Route103_Text_MayDefeated:
-	.string "Wow! That's great!\n"
-	.string "{PLAYER}{KUN}, you're pretty good!$"
+	.string "What?!\n"
+	.string "{PLAYER}{KUN}, you're lucky!$"
+
+Route103_Text_MayNoWay:
+	.string "There's no way you should've\n"
+	.string "been able to beat me!$"
 
 Route103_Text_MayTimeToHeadBack:
-	.string "MAY: I think I know why my dad has\n"
-	.string "an eye out for you now.\p"
-	.string "I mean, you just got that POKéMON,\n"
-	.string "but it already likes you.\p"
-	.string "You might be able to befriend any\n"
-	.string "kind of POKéMON easily.\p"
 	.string "Well, it's time to head back to\n"
 	.string "the LAB.$"
 
@@ -331,13 +353,6 @@ Route103_Text_BrendanDefeated:
 	.string "Huh, {PLAYER}, you're not too shabby.$"
 
 Route103_Text_BrendanTimeToHeadBack:
-	.string "BRENDAN: I think I get it.\n"
-	.string "I think I know why my dad has his eye\l"
-	.string "out for you now.\p"
-	.string "Look, your POKéMON already likes you,\n"
-	.string "even though you just got it.\p"
-	.string "{PLAYER}, I get the feeling that you\n"
-	.string "could befriend any POKéMON with ease.\p"
 	.string "We should head back to the LAB.$"
 
 Route103_Text_ShouldHaveBroughtPotion:
